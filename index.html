@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>itsclxw_ | Streamer Hub</title>
+
+  <!-- FAVICONS (Logo in Tab) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
+  <meta name="msapplication-TileColor" content="#ff0000">
+  <meta name="theme-color" content="#ff0000">
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
@@ -16,7 +24,6 @@
       --text-light: #b0b0d0;
       --border: rgba(255, 0, 0, 0.2);
     }
-
     *{margin:0;padding:0;box-sizing:border-box;}
     body{
       background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
@@ -36,7 +43,6 @@
       margin-bottom:.5rem;
     }
     .tagline{color:var(--text-light);font-size:1.1rem;margin-bottom:1rem;}
-
     /* LIVE BADGE */
     .live-status{
       display:none;align-items:center;gap:.5rem;
@@ -50,7 +56,6 @@
     }
     @keyframes pulse{0%,100%{box-shadow:0 0 5px #ff0040;}50%{box-shadow:0 0 20px #ff0040;}}
     @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-
     .social-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin:2rem 0;}
     .social-btn{
       display:flex;align-items:center;justify-content:center;gap:.5rem;
@@ -66,7 +71,6 @@
     }
     .twitch{color:#9146ff;}.youtube{color:#ff0000;}.discord{color:#5865f2;}
     .tiktok{color:#ff0050;}.instagram{color:#e4405f;}
-
     /* CLIPS SECTION - THUMBNAIL + REDIRECT */
     .clips-section{margin-top:3rem;width:100%;}
     .section-title{
@@ -102,9 +106,7 @@
     .clip-card:hover .play-icon{
       background:var(--primary);transform:translate(-50%,-50%) scale(1.1);
     }
-
     footer{margin-top:4rem;color:var(--text-light);font-size:.9rem;}
-
     @media(max-width:600px){
       .name{font-size:2rem;}.social-btn{font-size:.9rem;}
       .clip-thumb{height:180px;}
@@ -113,20 +115,17 @@
 </head>
 <body>
   <div class="container">
-
     <!-- PROFILE -->
     <div class="profile">
       <img src="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png" alt="itsclxw_ Avatar" class="avatar" />
       <h1 class="name">itsclxw_</h1>
       <p class="tagline"><b>GTA Streamer • Yapper • Meme Lord • Your New Favorite Streamer</b></p>
-
       <!-- LIVE BADGE -->
       <div class="live-status" id="liveBadge">
         <div class="live-dot"></div>
         LIVE NOW
       </div>
     </div>
-
     <!-- SOCIAL LINKS -->
     <div class="social-links">
       <a href="https://www.twitch.tv/itsclxw_" class="social-btn twitch" target="_blank">
@@ -145,52 +144,42 @@
         <i class="fab fa-instagram"></i> Instagram
       </a>
     </div>
-
     <!-- BEST VIDS (Click Thumbnail → Go to Video) -->
     <div class="clips-section">
       <h2 class="section-title">Best Vids</h2>
       <div class="clips-grid">
-
-        <!-- VIDEO 1: Your Short -->
+        <!-- VIDEO 1 -->
         <a href="https://www.youtube.com/shorts/7zxhiTGJOwo" target="_blank" class="clip-card">
-          <img src="https://img.youtube.com/vi/7zxhiTGJOwo/maxresdefault.jpg" alt="GTA Drift" class="clip-thumb">
+          <img src="https://img.youtube.com/vi/7zxhiTGJOwo/maxresdefault.jpg" alt="Sucking Out the Evil" class="clip-thumb">
           <div class="play-icon"></div>
           <div class="clip-title">Sucking Out the Evil!</div>
         </a>
-
-        <!-- VIDEO 2: Example -->
+        <!-- VIDEO 2 -->
         <a href="https://www.youtube.com/shorts/2BGA8-qaC8Y" target="_blank" class="clip-card">
-          <img src="https://img.youtube.com/vi/2BGA8-qaC8Y/maxresdefault.jpg" alt="Funny moment" class="clip-thumb">
+          <img src="https://img.youtube.com/vi/2BGA8-qaC8Y/maxresdefault.jpg" alt="One Night, Nine Members" class="clip-thumb">
           <div class="play-icon"></div>
           <div class="clip-title">One Night, Nine Members!</div>
         </a>
-
-        <!-- VIDEO 3: Example -->
+        <!-- VIDEO 3 -->
         <a href="https://www.youtube.com/shorts/7vRlKwTxliY" target="_blank" class="clip-card">
-          <img src="https://img.youtube.com/vi/7vRlKwTxliY/maxresdefault.jpg" alt="TikTok clip" class="clip-thumb">
+          <img src="https://img.youtube.com/vi/7vRlKwTxliY/maxresdefault.jpg" alt="Chair Betrayal" class="clip-thumb">
           <div class="play-icon"></div>
           <div class="clip-title">Bruh aint no way my chair did this to me bro!</div>
         </a>
-
       </div>
     </div>
-
     <!-- FOOTER -->
     <footer>
-      <p>© 2025 <strong>itsclxw_</strong> • All platforms linked 
-      </p>
+      <p>© 2025 <strong>itsclxw_</strong> • All platforms linked</p>
     </footer>
-
   </div>
 
   <!-- LIVE STATUS SCRIPT -->
   <script>
     const TWITCH_USER = 'itsclxw_';
-    const CLIENT_ID   = 'YOUR_CLIENT_ID';
-    const USER_TOKEN  = 'YOUR_USER_TOKEN';
-
+    const CLIENT_ID = 'YOUR_CLIENT_ID';
+    const USER_TOKEN = 'YOUR_USER_TOKEN';
     const badge = document.getElementById('liveBadge');
-
     async function checkLive() {
       try {
         const resp = await fetch(`https://api.twitch.tv/helix/streams?user_login=${TWITCH_USER}`, {
@@ -206,14 +195,8 @@
         badge.classList.remove('show');
       }
     }
-
-
     checkLive();
     setInterval(checkLive, 60_000);
   </script>
 </body>
-
 </html>
-
-
-
