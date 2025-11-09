@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>itsclxw_ | Streamer Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #ff0000d3;
+      --secondary: #ff00c8;
+      --bg: #0f0f1a;
+      --card: #1a1a2e;
+      --text: #ffffff;
+      --text-light: #b0b0d0;
+      --border: rgba(255, 0, 0, 0.2);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
+      line-height:1.6;min-height:100vh;padding:2rem 1rem;
+      display:flex;flex-direction:column;align-items:center;
+    }
+    .container{max-width:800px;width:100%;text-align:center;}
+    .profile{margin-bottom:2rem;}
+    .avatar{
+      width:140px;height:140px;border-radius:50%;border:4px solid var(--primary);
+      box-shadow:0 0 30px rgba(255, 0, 0, 0.4);margin-bottom:1rem;object-fit:cover;
+    }
+    .name{
+      font-family:'Orbitron',sans-serif;font-size:2.5rem;
+      background:linear-gradient(90deg,var(--primary),var(--secondary));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      margin-bottom:.5rem;
+    }
+    .tagline{color:var(--text-light);font-size:1.1rem;margin-bottom:1rem;}
+
+    /* LIVE BADGE */
+    .live-status{
+      display:none;align-items:center;gap:.5rem;
+      background:#ff0040;color:#fff;padding:.4rem 1rem;border-radius:50px;
+      font-size:.9rem;font-weight:600;animation:pulse 2s infinite;
+      margin-bottom:1.5rem;
+    }
+    .live-status.show{display:inline-flex;}
+    .live-dot{
+      width:10px;height:10px;background:#fff;border-radius:50%;animation:blink 1s infinite;
+    }
+    @keyframes pulse{0%,100%{box-shadow:0 0 5px #ff0040;}50%{box-shadow:0 0 20px #ff0040;}}
+    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+    .social-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin:2rem 0;}
+    .social-btn{
+      display:flex;align-items:center;justify-content:center;gap:.5rem;
+      width:100%;max-width:300px;padding:1rem;background:var(--card);
+      border:1px solid var(--border);border-radius:12px;color:var(--text);
+      text-decoration:none;font-weight:600;transition:all .3s;
+      box-shadow:0 4px 15px rgba(0,0,0,.2);
+    }
+    .social-btn i{font-size:1.4rem;width:30px;}
+    .social-btn:hover{
+      transform:translateY(-5px);box-shadow:0 10px 25px rgba(255, 0, 0, 0.2);
+      border-color:var(--primary);
+    }
+    .twitch{color:#9146ff;}.youtube{color:#ff0000;}.discord{color:#5865f2;}
+    .tiktok{color:#ff0050;}.instagram{color:#e4405f;}
+
+    /* CLIPS SECTION - THUMBNAIL + REDIRECT */
+    .clips-section{margin-top:3rem;width:100%;}
+    .section-title{
+      font-family:'Orbitron',sans-serif;font-size:1.8rem;margin-bottom:1.5rem;
+      color:var(--primary);text-align:center;
+    }
+    .clips-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;
+    }
+    .clip-card{
+      background:var(--card);border-radius:12px;overflow:hidden;
+      border:1px solid var(--border);transition:transform .3s;
+      cursor:pointer;position:relative;
+    }
+    .clip-card:hover{transform:scale(1.03);}
+    .clip-thumb{
+      width:100%;height:200px;object-fit:cover;background:#000;
+    }
+    .clip-title{
+      padding:1rem;font-weight:600;color:var(--text-light);font-size:.95rem;
+    }
+    .play-icon{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:60px;height:60px;background:rgba(255, 0, 0, 0.699);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      transition:all .3s;
+    }
+    .play-icon::after{
+      content:'';width:0;height:0;border-left:18px solid white;
+      border-top:12px solid transparent;border-bottom:12px solid transparent;
+      margin-left:4px;
+    }
+    .clip-card:hover .play-icon{
+      background:var(--primary);transform:translate(-50%,-50%) scale(1.1);
+    }
+
+    footer{margin-top:4rem;color:var(--text-light);font-size:.9rem;}
+
+    @media(max-width:600px){
+      .name{font-size:2rem;}.social-btn{font-size:.9rem;}
+      .clip-thumb{height:180px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- PROFILE -->
+    <div class="profile">
+      <img src="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png" alt="itsclxw_ Avatar" class="avatar" />
+      <h1 class="name">itsclxw_</h1>
+      <p class="tagline"><b>GTA Streamer • Yapper • Meme Lord • Your New Favorite Streamer</b></p>
+
+      <!-- LIVE BADGE -->
+      <div class="live-status" id="liveBadge">
+        <div class="live-dot"></div>
+        LIVE NOW
+      </div>
+    </div>
+
+    <!-- SOCIAL LINKS -->
+    <div class="social-links">
+      <a href="https://www.twitch.tv/itsclxw_" class="social-btn twitch" target="_blank">
+        <i class="fab fa-twitch"></i> Watch Live on Twitch
+      </a>
+      <a href="https://www.youtube.com/@itsclxw" class="social-btn youtube" target="_blank">
+        <i class="fab fa-youtube"></i> Best Clips on YouTube
+      </a>
+      <a href="https://discord.gg/PmYJAKpQHD" class="social-btn discord" target="_blank">
+        <i class="fab fa-discord"></i> Join Discord Community
+      </a>
+      <a href="https://www.tiktok.com/@itsclxw_" class="social-btn tiktok" target="_blank">
+        <i class="fab fa-tiktok"></i> Viral Shorts on TikTok
+      </a>
+      <a href="https://www.instagram.com/iamtypiikal/?hl=en" class="social-btn instagram" target="_blank">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+    </div>
+
+    <!-- BEST VIDS (Click Thumbnail → Go to Video) -->
+    <div class="clips-section">
+      <h2 class="section-title">Best Vids</h2>
+      <div class="clips-grid">
+
+        <!-- VIDEO 1: Your Short -->
+        <a href="https://www.youtube.com/shorts/7zxhiTGJOwo" target="_blank" class="clip-card">
+          <img src="https://img.youtube.com/vi/7zxhiTGJOwo/maxresdefault.jpg" alt="GTA Drift" class="clip-thumb">
+          <div class="play-icon"></div>
+          <div class="clip-title">Sucking Out the Evil!</div>
+        </a>
+
+        <!-- VIDEO 2: Example -->
+        <a href="https://www.youtube.com/shorts/2BGA8-qaC8Y" target="_blank" class="clip-card">
+          <img src="https://img.youtube.com/vi/2BGA8-qaC8Y/maxresdefault.jpg" alt="Funny moment" class="clip-thumb">
+          <div class="play-icon"></div>
+          <div class="clip-title">One Night, Nine Members!</div>
+        </a>
+
+        <!-- VIDEO 3: Example -->
+        <a href="https://www.youtube.com/shorts/7vRlKwTxliY" target="_blank" class="clip-card">
+          <img src="https://img.youtube.com/vi/7vRlKwTxliY/maxresdefault.jpg" alt="TikTok clip" class="clip-thumb">
+          <div class="play-icon"></div>
+          <div class="clip-title">Bruh aint no way my chair did this to me bro!</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2025 <strong>itsclxw_</strong> • All platforms linked 
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- LIVE STATUS SCRIPT -->
+  <script>
+    const TWITCH_USER = 'itsclxw_';
+    const CLIENT_ID   = 'YOUR_CLIENT_ID';
+    const USER_TOKEN  = 'YOUR_USER_TOKEN';
+
+    const badge = document.getElementById('liveBadge');
+
+    async function checkLive() {
+      try {
+        const resp = await fetch(`https://api.twitch.tv/helix/streams?user_login=${TWITCH_USER}`, {
+          headers: {
+            'Client-ID': CLIENT_ID,
+            'Authorization': `Bearer ${USER_TOKEN}`
+          }
+        });
+        const data = await resp.json();
+        badge.classList.toggle('show', !!data.data?.[0]);
+      } catch (e) {
+        console.error('Live check failed:', e);
+        badge.classList.remove('show');
+      }
+    }
+
+    checkLive();
+    setInterval(checkLive, 60_000);
+  </script>
+</body>
+</html>
