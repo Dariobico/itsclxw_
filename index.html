@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>itsclxw_ | Streamer Hub</title>
 
-  <!-- FAVICONS (Logo in Tab) -->
+  <!-- FAVICONS -->
   <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
   <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
@@ -17,115 +17,289 @@
   <style>
     :root {
       --primary: #ff0000d3;
-      --secondary: #ff00c8;
-      --bg: #0f0f1a;
-      --card: #1a1a2e;
+      --secondary: #ff0000;
+      --bg: #131313;
+      --card: #181818;
       --text: #ffffff;
-      --text-light: #b0b0d0;
+      --text-light: #e9e9e9;
       --border: rgba(255, 0, 0, 0.2);
     }
+
+    [data-theme="light"] {
+      --primary: #ff3333;
+      --secondary: #ff2626;
+      --bg: #f5f5f5;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --text-light: #666666;
+      --border: rgba(255, 0, 0, 0.15);
+    }
+
     *{margin:0;padding:0;box-sizing:border-box;}
+    html, body { 
+      height: auto; 
+      min-height: 100vh; 
+      overflow-x: hidden; 
+      overflow-y: auto;
+    }
     body{
-      background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
-      line-height:1.6;min-height:100vh;padding:2rem 1rem;
-      display:flex;flex-direction:column;align-items:center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: background 0.3s, color 0.3s;
+      cursor: url('https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png'), auto;
     }
-    .container{max-width:800px;width:100%;text-align:center;}
-    .profile{margin-bottom:2rem;}
-    .avatar{
-      width:140px;height:140px;border-radius:50%;border:4px solid var(--primary);
-      box-shadow:0 0 30px rgba(255, 0, 0, 0.4);margin-bottom:1rem;object-fit:cover;
+
+    /* PARTICLES CANVAS */
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
     }
-    .name{
-      font-family:'Orbitron',sans-serif;font-size:2.5rem;
-      background:linear-gradient(90deg,var(--primary),var(--secondary));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      margin-bottom:.5rem;
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
-    .tagline{color:var(--text-light);font-size:1.1rem;margin-bottom:1rem;}
-    /* LIVE BADGE */
-    .live-status{
-      display:none;align-items:center;gap:.5rem;
-      background:#ff0040;color:#fff;padding:.4rem 1rem;border-radius:50px;
-      font-size:.9rem;font-weight:600;animation:pulse 2s infinite;
-      margin-bottom:1.5rem;
+
+    .profile { margin-bottom: 2rem; }
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+      margin-bottom: 1rem;
+      object-fit: cover;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .live-status.show{display:inline-flex;}
-    .live-dot{
-      width:10px;height:10px;background:#fff;border-radius:50%;animation:blink 1s infinite;
+    .name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: .5rem;
     }
-    @keyframes pulse{0%,100%{box-shadow:0 0 5px #ff0040;}50%{box-shadow:0 0 20px #ff0040;}}
-    @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-    .social-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin:2rem 0;}
-    .social-btn{
-      display:flex;align-items:center;justify-content:center;gap:.5rem;
-      width:100%;max-width:300px;padding:1rem;background:var(--card);
-      border:1px solid var(--border);border-radius:12px;color:var(--text);
-      text-decoration:none;font-weight:600;transition:all .3s;
-      box-shadow:0 4px 15px rgba(0,0,0,.2);
+    .tagline {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
     }
-    .social-btn i{font-size:1.4rem;width:30px;}
-    .social-btn:hover{
-      transform:translateY(-5px);box-shadow:0 10px 25px rgba(255, 0, 0, 0.2);
-      border-color:var(--primary);
+
+    .live-status {
+      display: none;
+      align-items: center;
+      gap: .5rem;
+      background: #ff0040;
+      color: #fff;
+      padding: .4rem 1rem;
+      border-radius: 50px;
+      font-size: .9rem;
+      font-weight: 600;
+      animation: pulse 2s infinite;
+      margin-bottom: 1.5rem;
     }
-    .twitch{color:#9146ff;}.youtube{color:#ff0000;}.discord{color:#5865f2;}
-    .tiktok{color:#ff0050;}.instagram{color:#e4405f;}.spotify{color:#1db954;}
-    /* CLIPS SECTION - THUMBNAIL + REDIRECT */
-    .clips-section{margin-top:3rem;width:100%;}
-    .section-title{
-      font-family:'Orbitron',sans-serif;font-size:1.8rem;margin-bottom:1.5rem;
-      color:var(--primary);text-align:center;
+    .live-status.show { display: inline-flex; }
+    .live-dot {
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      animation: blink 1s infinite;
     }
-    .clips-grid{
-      display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;
+    @keyframes pulse { 0%,100%{box-shadow:0 0 5px #ff0000;}50%{box-shadow:0 0 20px #ff0000;} }
+    @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0;} }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
     }
-    .clip-card{
-      background:var(--card);border-radius:12px;overflow:hidden;
-      border:1px solid var(--border);transition:transform .3s;
-      cursor:pointer;position:relative;
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      width: 100%;
+      max-width: 300px;
+      padding: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all .3s;
+      box-shadow: 0 4px 15px rgba(0,0,0,.2);
     }
-    .clip-card:hover{transform:scale(1.03);}
-    .clip-thumb{
-      width:100%;height:200px;object-fit:cover;background:#000;
+    .social-btn i { font-size: 1.4rem; width: 30px; }
+    .social-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
+      border-color: var(--primary);
     }
-    .clip-title{
-      padding:1rem;font-weight:600;color:var(--text-light);font-size:.95rem;
+    .twitch { color: #9146ff; }
+    .youtube { color: #ff0000; }
+    .discord { color: #5865f2; }
+    .tiktok { color: #ff0050; }
+    .instagram { color: #e4405f; }
+    .spotify { color: #1db954; }
+
+    /* CONTROLS */
+    .controls {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
     }
-    .play-icon{
-      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      width:60px;height:60px;background:rgba(255, 0, 0, 0.699);border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      transition:all .3s;
+    .control-btn {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .play-icon::after{
-      content:'';width:0;height:0;border-left:18px solid white;
-      border-top:12px solid transparent;border-bottom:12px solid transparent;
-      margin-left:4px;
+    .control-btn:hover { transform: scale(1.05); }
+    .particle-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff0000;
+      display: inline-block;
     }
-    .clip-card:hover .play-icon{
-      background:var(--primary);transform:translate(-50%,-50%) scale(1.1);
+
+    .clips-section { margin-top: 3rem; width: 100%; }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      text-align: center;
     }
-    footer{margin-top:4rem;color:var(--text-light);font-size:.9rem;}
-    @media(max-width:600px){
-      .name{font-size:2rem;}.social-btn{font-size:.9rem;}
-      .clip-thumb{height:180px;}
+    .clips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .clip-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .3s;
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+    }
+    .clip-card:hover { transform: scale(1.03); }
+    .clip-thumb {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #000;
+    }
+    .clip-title {
+      padding: 1rem;
+      font-weight: 600;
+      color: var(--text-light);
+      font-size: .95rem;
+      text-decoration: none;
+      display: block;
+    }
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 0, 0, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s;
+    }
+    .play-icon::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 18px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 4px;
+    }
+    .clip-card:hover .play-icon {
+      background: var(--primary);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    footer {
+      margin-top: 4rem;
+      color: var(--text-light);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 600px) {
+      .name { font-size: 2rem; }
+      .social-btn { font-size: .9rem; }
+      .clip-thumb { height: 180px; }
+      .controls { position: static; margin: 1rem auto; justify-content: center; }
     }
   </style>
 </head>
 <body>
+
+  <!-- PARTICLES BACKGROUND -->
+  <div id="particles-js"></div>
+
   <div class="container">
+
+    <!-- CONTROLS: Dark Mode + Particle Color -->
+    <div class="controls">
+      <button class="control-btn theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i> <span>Dark Mode</span>
+      </button>
+      <button class="control-btn" onclick="cycleParticleColor()">
+        <span class="particle-color" id="colorDot"></span> <span id="colorLabel">Red</span>
+      </button>
+    </div>
+
     <!-- PROFILE -->
     <div class="profile">
       <img src="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png" alt="itsclxw_ Avatar" class="avatar" />
       <h1 class="name">itsclxw_</h1>
       <p class="tagline"><b>GTA Streamer • Yapper • Meme Lord • Your New Favorite Streamer</b></p>
-      <!-- LIVE BADGE -->
       <div class="live-status" id="liveBadge">
         <div class="live-dot"></div>
         LIVE NOW
       </div>
     </div>
+
     <!-- SOCIAL LINKS -->
     <div class="social-links">
       <a href="https://www.twitch.tv/itsclxw_" class="social-btn twitch" target="_blank">
@@ -143,64 +317,126 @@
       <a href="https://www.instagram.com/iamtypiikal/?hl=en" class="social-btn instagram" target="_blank">
         <i class="fab fa-instagram"></i> Instagram
       </a>
-      <!-- NEW SPOTIFY BUTTON -->
       <a href="https://open.spotify.com/artist/2TbOpl7QHFI64OhO3QxbGh?si=jD99xB55Roa6_cU83IszwA" class="social-btn spotify" target="_blank">
         <i class="fab fa-spotify"></i> Listen to TypiiKal on Spotify
       </a>
     </div>
-    <!-- BEST VIDS (Click Thumbnail → Go to Video) -->
+
+    <!-- BEST VIDS -->
     <div class="clips-section">
       <h2 class="section-title">Best Vids</h2>
       <div class="clips-grid">
-        <!-- VIDEO 1 -->
         <a href="https://www.youtube.com/shorts/7zxhiTGJOwo" target="_blank" class="clip-card">
           <img src="https://img.youtube.com/vi/7zxhiTGJOwo/maxresdefault.jpg" alt="Sucking Out the Evil" class="clip-thumb">
           <div class="play-icon"></div>
           <div class="clip-title">Sucking Out the Evil!</div>
         </a>
-        <!-- VIDEO 2 -->
         <a href="https://www.youtube.com/shorts/2BGA8-qaC8Y" target="_blank" class="clip-card">
           <img src="https://img.youtube.com/vi/2BGA8-qaC8Y/maxresdefault.jpg" alt="One Night, Nine Members" class="clip-thumb">
           <div class="play-icon"></div>
           <div class="clip-title">One Night, Nine Members!</div>
         </a>
-        <!-- VIDEO 3 -->
         <a href="https://www.youtube.com/shorts/7vRlKwTxliY" target="_blank" class="clip-card">
           <img src="https://img.youtube.com/vi/7vRlKwTxliY/maxresdefault.jpg" alt="Chair Betrayal" class="clip-thumb">
           <div class="play-icon"></div>
           <div class="clip-title">Bruh aint no way my chair did this to me bro!</div>
         </a>
+                <a href="https://www.youtube.com/shorts/fbagXjQDPaE" target="_blank" class="clip-card">
+          <img src="https://img.youtube.com/vi/fbagXjQDPaE/maxresdefault.jpg" alt="Chair Betrayal" class="clip-thumb">
+          <div class="play-icon"></div>
+          <div class="clip-title">Bruh aint no way my chair did this to me bro!</div>
+        </a>
       </div>
     </div>
+
     <!-- FOOTER -->
     <footer>
       <p>© 2025 <strong>itsclxw_</strong> • All platforms linked</p>
     </footer>
   </div>
 
-  <!-- LIVE STATUS SCRIPT -->
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    const TWITCH_USER = 'itsclxw_';
-    const CLIENT_ID = 'YOUR_CLIENT_ID';
-    const USER_TOKEN = 'YOUR_USER_TOKEN';
-    const badge = document.getElementById('liveBadge');
-    async function checkLive() {
-      try {
-        const resp = await fetch(`https://api.twitch.tv/helix/streams?user_login=${TWITCH_USER}`, {
-          headers: {
-            'Client-ID': CLIENT_ID,
-            'Authorization': `Bearer ${USER_TOKEN}`
+    // === PARTICLE COLOR SYSTEM ===
+    const colorPresets = [
+      { name: "Red", colors: ["#ff0000", "#ff00c8"], line: "#ff0000" },
+      { name: "Blue", colors: ["#00f0ff", "#0099ff"], line: "#0099ff" },
+      { name: "Green", colors: ["#00ff9d", "#00cc7a"], line: "#00cc7a" },
+      { name: "Purple", colors: ["#9d00ff", "#cc66ff"], line: "#cc66ff" },
+      { name: "Random", colors: [], line: "#ffffff" }
+    ];
+    let currentColorIndex = 0;
+    let pJ;
+
+    function initParticles() {
+      const preset = colorPresets[currentColorIndex];
+      const config = {
+        "particles": {
+          "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+          "color": { "value": preset.name === "Random" ? randomColor() : preset.colors },
+          "shape": { "type": "circle" },
+          "opacity": { "value": 0.8, "random": true },
+          "size": { "value": 3, "random": true },
+          "line_linked": { "enable": true, "distance": 150, "color": preset.line, "opacity": 0.3, "width": 1 },
+          "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": { "enable": true, "mode": "repulse" },
+            "onclick": { "enable": true, "mode": "push" },
+            "resize": true
+          },
+          "modes": {
+            "repulse": { "distance": 100, "duration": 0.4 },
+            "push": { "particles_nb": 4 }
           }
-        });
-        const data = await resp.json();
-        badge.classList.toggle('show', !!data.data?.[0]);
-      } catch (e) {
-        console.error('Live check failed:', e);
-        badge.classList.remove('show');
-      }
+        },
+        "retina_detect": true
+      };
+
+      if (pJ) pJ.fn.vendors.destroy();
+      pJ = particlesJS("particles-js", config);
     }
-    checkLive();
-    setInterval(checkLive, 60_000);
+
+    function randomColor() {
+      return "#" + Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    function cycleParticleColor() {
+      currentColorIndex = (currentColorIndex + 1) % colorPresets.length;
+      const preset = colorPresets[currentColorIndex];
+      document.getElementById("colorLabel").textContent = preset.name;
+      document.getElementById("colorDot").style.background = preset.name === "Random" ? "#fff" : preset.colors[0];
+      localStorage.setItem("particleColor", currentColorIndex);
+      initParticles();
+    }
+
+    const savedColor = localStorage.getItem("particleColor");
+    if (savedColor) currentColorIndex = parseInt(savedColor);
+    document.getElementById("colorLabel").textContent = colorPresets[currentColorIndex].name;
+    document.getElementById("colorDot").style.background = colorPresets[currentColorIndex].name === "Random" ? "#fff" : colorPresets[currentColorIndex].colors[0];
+
+    // === DARK MODE TOGGLE ===
+    const toggleBtn = document.querySelector('.theme-toggle span');
+    const icon = document.querySelector('.theme-toggle i');
+
+    function toggleTheme() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+      toggleBtn.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+      icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
+      localStorage.setItem('theme', isLight ? 'dark' : 'light');
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    toggleBtn.textContent = savedTheme === 'light' ? 'Light Mode' : 'Dark Mode';
+    icon.className = savedTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+
+    // === INIT ===
+    initParticles();
   </script>
 </body>
 </html>
