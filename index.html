@@ -92,7 +92,7 @@
     .name {
       font-family: 'Orbitron', sans-serif;
       font-size: 2.5rem;
-      background: linear-gradient(90deg, var(--primary), var (--secondary));
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: .5rem;
@@ -421,13 +421,12 @@
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // === COLOR SYSTEM ===
+    // === COLOR SYSTEM (NO RANDOM) ===
     const colorPresets = [
       { name: "Red",    primary: "#ff0000d3", secondary: "#ff0000", particle1: "#ff0000", particle2: "#ff00c8", line: "#ff0000" },
       { name: "Blue",   primary: "#0099ffd3", secondary: "#0099ff", particle1: "#00f0ff", particle2: "#0099ff", line: "#0099ff" },
       { name: "Green",  primary: "#00cc7ad3", secondary: "#00cc7a", particle1: "#00ff9d", particle2: "#00cc7a", line: "#00cc7a" },
-      { name: "Purple", primary: "#cc66ffd3", secondary: "#cc66ff", particle1: "#9d00ff", particle2: "#cc66ff", line: "#cc66ff" },
-      { name: "Random", primary: "#ff00ffd3", secondary: "#ff00ff", particle1: "#ffffff", particle2: "#ffffff", line: "#ffffff" }
+      { name: "Purple", primary: "#cc66ffd3", secondary: "#cc66ff", particle1: "#9d00ff", particle2: "#cc66ff", line: "#cc66ff" }
     ];
     let currentColorIndex = 0;
     let pJ;
@@ -446,7 +445,7 @@
       const config = {
         "particles": {
           "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-          "color": { "value": preset.name === "Random" ? randomColor() : [preset.particle1, preset.particle2] },
+          "color": { "value": [preset.particle1, preset.particle2] },
           "shape": { "type": "circle" },
           "opacity": { "value": 0.8, "random": true },
           "size": { "value": 3, "random": true },
@@ -472,27 +471,25 @@
       pJ = particlesJS("particles-js", config);
     }
 
-    function randomColor() {
-      return "#" + Math.floor(Math.random()*16777215).toString(16);
-    }
-
     function cycleParticleColor() {
       currentColorIndex = (currentColorIndex + 1) % colorPresets.length;
       const preset = colorPresets[currentColorIndex];
       updateCSSVariables(preset);
       document.getElementById("colorLabel").textContent = preset.name;
-      document.getElementById("colorDot").style.background = preset.name === "Random" ? "#fff" : preset.particle1;
+      document.getElementById("colorDot").style.background = preset.particle1;
       localStorage.setItem("particleColor", currentColorIndex);
       initParticles();
     }
 
     // === INIT ON LOAD ===
     const savedColor = localStorage.getItem("particleColor");
-    if (savedColor) currentColorIndex = parseInt(savedColor);
+    if (savedColor && parseInt(savedColor) < colorPresets.length) {
+      currentColorIndex = parseInt(savedColor);
+    }
     const initialPreset = colorPresets[currentColorIndex];
     updateCSSVariables(initialPreset);
     document.getElementById("colorLabel").textContent = initialPreset.name;
-    document.getElementById("colorDot").style.background = initialPreset.name === "Random" ? "#fff" : initialPreset.particle1;
+    document.getElementById("colorDot").style.background = initialPreset.particle1;
     initParticles();
 
     // === DARK MODE TOGGLE ===
