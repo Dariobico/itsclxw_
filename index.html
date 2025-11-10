@@ -23,6 +23,9 @@
       --text: #ffffff;
       --text-light: #e9e9e9;
       --border: rgba(255, 0, 0, 0.2);
+      --particle-color-1: #ff0000;
+      --particle-color-2: #ff00c8;
+      --particle-line: #ff0000;
     }
 
     [data-theme="light"] {
@@ -81,7 +84,7 @@
       height: 140px;
       border-radius: 50%;
       border: 4px solid var(--primary);
-      box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+      box-shadow: 0 0 30px var(--primary);
       margin-bottom: 1rem;
       object-fit: cover;
       transition: border-color 0.3s, box-shadow 0.3s;
@@ -89,7 +92,7 @@
     .name {
       font-family: 'Orbitron', sans-serif;
       font-size: 2.5rem;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: linear-gradient(90deg, var(--primary), var (--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: .5rem;
@@ -104,7 +107,7 @@
       display: none;
       align-items: center;
       gap: .5rem;
-      background: #ff0040;
+      background: var(--primary);
       color: #fff;
       padding: .4rem 1rem;
       border-radius: 50px;
@@ -121,7 +124,7 @@
       border-radius: 50%;
       animation: blink 1s infinite;
     }
-    @keyframes pulse { 0%,100%{box-shadow:0 0 5px #ff0000;}50%{box-shadow:0 0 20px #ff0000;} }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 5px var(--primary);}50%{box-shadow:0 0 20px var(--primary);} }
     @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0;} }
 
     .social-links {
@@ -151,7 +154,7 @@
     .social-btn i { font-size: 1.4rem; width: 30px; }
     .social-btn:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(255, 0, 0, 0.2);
+      box-shadow: 0 10px 25px var(--primary);
       border-color: var(--primary);
     }
     .twitch { color: #9146ff; }
@@ -188,7 +191,7 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: #ff0000;
+      background: var(--particle-color-1);
       display: inline-block;
     }
 
@@ -258,6 +261,40 @@
       transform: translate(-50%, -50%) scale(1.1);
     }
 
+    /* SPOTIFY TOP TRACKS */
+    .spotify-section {
+      margin-top: 3rem;
+      width: 100%;
+    }
+    .spotify-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      text-align: center;
+    }
+    .spotify-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .spotify-embed {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 15px rgba(0,0,0,.2);
+      height: 85px;
+      width: 100%;
+    }
+    .spotify-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      overflow: hidden;
+      display: block;
+    }
+
     footer {
       margin-top: 4rem;
       color: var(--text-light);
@@ -269,6 +306,7 @@
       .social-btn { font-size: .9rem; }
       .clip-thumb { height: 180px; }
       .controls { position: static; margin: 1rem auto; justify-content: center; }
+      .spotify-embed { height: 85px; }
     }
   </style>
 </head>
@@ -322,6 +360,31 @@
       </a>
     </div>
 
+    <!-- SPOTIFY TOP TRACKS -->
+    <div class="spotify-section">
+      <h2 class="spotify-title">Top Tracks</h2>
+      <div class="spotify-grid">
+        <!-- Honour 2.0 -->
+        <div class="spotify-embed">
+          <iframe src="https://open.spotify.com/embed/album/4ISBnywk8CdMmcdz8AfJsn" 
+                  width="100%" height="85" 
+                  frameborder="0" 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy">
+          </iframe>
+        </div>
+        <!-- Honour 2.0 (Remix) -->
+        <div class="spotify-embed">
+          <iframe src="https://open.spotify.com/embed/track/5omDZBbrbOzdXbUaRmYz9L" 
+                  width="100%" height="85" 
+                  frameborder="0" 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
     <!-- BEST VIDS -->
     <div class="clips-section">
       <h2 class="section-title">Best Vids</h2>
@@ -341,10 +404,10 @@
           <div class="play-icon"></div>
           <div class="clip-title">Bruh aint no way my chair did this to me bro!</div>
         </a>
-                <a href="https://www.youtube.com/shorts/fbagXjQDPaE" target="_blank" class="clip-card">
-          <img src="https://img.youtube.com/vi/fbagXjQDPaE/maxresdefault.jpg" alt="Chair Betrayal" class="clip-thumb">
+        <a href="https://www.youtube.com/shorts/fbagXjQDPaE" target="_blank" class="clip-card">
+          <img src="https://img.youtube.com/vi/fbagXjQDPaE/maxresdefault.jpg" alt="Another Clip" class="clip-thumb">
           <div class="play-icon"></div>
-          <div class="clip-title">Bruh aint no way my chair did this to me bro!</div>
+          <div class="clip-title">Another Epic Moment!</div>
         </a>
       </div>
     </div>
@@ -358,23 +421,32 @@
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    // === PARTICLE COLOR SYSTEM ===
+    // === COLOR SYSTEM ===
     const colorPresets = [
-      { name: "Red", colors: ["#ff0000", "#ff00c8"], line: "#ff0000" },
-      { name: "Blue", colors: ["#00f0ff", "#0099ff"], line: "#0099ff" },
-      { name: "Green", colors: ["#00ff9d", "#00cc7a"], line: "#00cc7a" },
-      { name: "Purple", colors: ["#9d00ff", "#cc66ff"], line: "#cc66ff" },
-      { name: "Random", colors: [], line: "#ffffff" }
+      { name: "Red",    primary: "#ff0000d3", secondary: "#ff0000", particle1: "#ff0000", particle2: "#ff00c8", line: "#ff0000" },
+      { name: "Blue",   primary: "#0099ffd3", secondary: "#0099ff", particle1: "#00f0ff", particle2: "#0099ff", line: "#0099ff" },
+      { name: "Green",  primary: "#00cc7ad3", secondary: "#00cc7a", particle1: "#00ff9d", particle2: "#00cc7a", line: "#00cc7a" },
+      { name: "Purple", primary: "#cc66ffd3", secondary: "#cc66ff", particle1: "#9d00ff", particle2: "#cc66ff", line: "#cc66ff" },
+      { name: "Random", primary: "#ff00ffd3", secondary: "#ff00ff", particle1: "#ffffff", particle2: "#ffffff", line: "#ffffff" }
     ];
     let currentColorIndex = 0;
     let pJ;
+
+    function updateCSSVariables(preset) {
+      document.documentElement.style.setProperty('--primary', preset.primary);
+      document.documentElement.style.setProperty('--secondary', preset.secondary);
+      document.documentElement.style.setProperty('--border', preset.primary.replace('d3', '33')); // 20% opacity
+      document.documentElement.style.setProperty('--particle-color-1', preset.particle1);
+      document.documentElement.style.setProperty('--particle-color-2', preset.particle2);
+      document.documentElement.style.setProperty('--particle-line', preset.line);
+    }
 
     function initParticles() {
       const preset = colorPresets[currentColorIndex];
       const config = {
         "particles": {
           "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-          "color": { "value": preset.name === "Random" ? randomColor() : preset.colors },
+          "color": { "value": preset.name === "Random" ? randomColor() : [preset.particle1, preset.particle2] },
           "shape": { "type": "circle" },
           "opacity": { "value": 0.8, "random": true },
           "size": { "value": 3, "random": true },
@@ -407,16 +479,21 @@
     function cycleParticleColor() {
       currentColorIndex = (currentColorIndex + 1) % colorPresets.length;
       const preset = colorPresets[currentColorIndex];
+      updateCSSVariables(preset);
       document.getElementById("colorLabel").textContent = preset.name;
-      document.getElementById("colorDot").style.background = preset.name === "Random" ? "#fff" : preset.colors[0];
+      document.getElementById("colorDot").style.background = preset.name === "Random" ? "#fff" : preset.particle1;
       localStorage.setItem("particleColor", currentColorIndex);
       initParticles();
     }
 
+    // === INIT ON LOAD ===
     const savedColor = localStorage.getItem("particleColor");
     if (savedColor) currentColorIndex = parseInt(savedColor);
-    document.getElementById("colorLabel").textContent = colorPresets[currentColorIndex].name;
-    document.getElementById("colorDot").style.background = colorPresets[currentColorIndex].name === "Random" ? "#fff" : colorPresets[currentColorIndex].colors[0];
+    const initialPreset = colorPresets[currentColorIndex];
+    updateCSSVariables(initialPreset);
+    document.getElementById("colorLabel").textContent = initialPreset.name;
+    document.getElementById("colorDot").style.background = initialPreset.name === "Random" ? "#fff" : initialPreset.particle1;
+    initParticles();
 
     // === DARK MODE TOGGLE ===
     const toggleBtn = document.querySelector('.theme-toggle span');
@@ -434,9 +511,6 @@
     document.documentElement.setAttribute('data-theme', savedTheme);
     toggleBtn.textContent = savedTheme === 'light' ? 'Light Mode' : 'Dark Mode';
     icon.className = savedTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
-
-    // === INIT ===
-    initParticles();
   </script>
 </body>
 </html>
