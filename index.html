@@ -4,14 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>itsclxw_ | Streamer Hub</title>
-
   <!-- FAVICONS -->
   <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
   <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
   <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png">
   <meta name="msapplication-TileColor" content="#ff0000">
   <meta name="theme-color" content="#ff0000">
-
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
@@ -27,7 +25,6 @@
       --particle-color-2: #ff00c8;
       --particle-line: #ff0000;
     }
-
     [data-theme="light"] {
       --primary: #ff3333;
       --secondary: #ff2626;
@@ -37,12 +34,11 @@
       --text-light: #666666;
       --border: rgba(255, 0, 0, 0.15);
     }
-
     *{margin:0;padding:0;box-sizing:border-box;}
-    html, body { 
-      height: auto; 
-      min-height: 100vh; 
-      overflow-x: hidden; 
+    html, body {
+      height: auto;
+      min-height: 100vh;
+      overflow-x: hidden;
       overflow-y: auto;
     }
     body{
@@ -58,7 +54,6 @@
       transition: background 0.3s, color 0.3s;
       cursor: url('https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png'), auto;
     }
-
     /* PARTICLES CANVAS */
     #particles-js {
       position: fixed;
@@ -69,7 +64,6 @@
       z-index: -1;
       pointer-events: none;
     }
-
     .container {
       max-width: 800px;
       width: 100%;
@@ -77,7 +71,6 @@
       position: relative;
       z-index: 1;
     }
-
     .profile { margin-bottom: 2rem; }
     .avatar {
       width: 140px;
@@ -102,7 +95,6 @@
       font-size: 1.1rem;
       margin-bottom: 1rem;
     }
-
     .live-status {
       display: none;
       align-items: center;
@@ -126,7 +118,6 @@
     }
     @keyframes pulse { 0%,100%{box-shadow:0 0 5px var(--primary);}50%{box-shadow:0 0 20px var(--primary);} }
     @keyframes blink { 0%,100%{opacity:1;}50%{opacity:0;} }
-
     .social-links {
       display: flex;
       justify-content: center;
@@ -163,7 +154,7 @@
     .tiktok { color: #ff0050; }
     .instagram { color: #e4405f; }
     .spotify { color: #1db954; }
-
+    .kofi { color: #ff5f5f; }
     /* CONTROLS */
     .controls {
       position: absolute;
@@ -194,7 +185,6 @@
       background: var(--particle-color-1);
       display: inline-block;
     }
-
     .clips-section { margin-top: 3rem; width: 100%; }
     .section-title {
       font-family: 'Orbitron', sans-serif;
@@ -260,8 +250,7 @@
       background: var(--primary);
       transform: translate(-50%, -50%) scale(1.1);
     }
-
-    /* SPOTIFY TOP TRACKS */
+    /* SPOTIFY SECTION */
     .spotify-section {
       margin-top: 3rem;
       width: 100%;
@@ -269,9 +258,14 @@
     .spotify-title {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       color: var(--primary);
       text-align: center;
+    }
+    .spotify-subtitle {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
     }
     .spotify-grid {
       display: grid;
@@ -294,13 +288,11 @@
       overflow: hidden;
       display: block;
     }
-
     footer {
       margin-top: 4rem;
       color: var(--text-light);
       font-size: .9rem;
     }
-
     @media (max-width: 600px) {
       .name { font-size: 2rem; }
       .social-btn { font-size: .9rem; }
@@ -311,12 +303,9 @@
   </style>
 </head>
 <body>
-
   <!-- PARTICLES BACKGROUND -->
   <div id="particles-js"></div>
-
   <div class="container">
-
     <!-- CONTROLS: Dark Mode + Particle Color -->
     <div class="controls">
       <button class="control-btn theme-toggle" onclick="toggleTheme()">
@@ -326,7 +315,6 @@
         <span class="particle-color" id="colorDot"></span> <span id="colorLabel">Red</span>
       </button>
     </div>
-
     <!-- PROFILE -->
     <div class="profile">
       <img src="https://i.postimg.cc/02qKtTq1/Claw-Logo-lmaooo-3.png" alt="itsclxw_ Avatar" class="avatar" />
@@ -337,7 +325,6 @@
         LIVE NOW
       </div>
     </div>
-
     <!-- SOCIAL LINKS -->
     <div class="social-links">
       <a href="https://www.twitch.tv/itsclxw_" class="social-btn twitch" target="_blank">
@@ -358,27 +345,31 @@
       <a href="https://open.spotify.com/artist/2TbOpl7QHFI64OhO3QxbGh?si=jD99xB55Roa6_cU83IszwA" class="social-btn spotify" target="_blank">
         <i class="fab fa-spotify"></i> Listen to TypiiKal on Spotify
       </a>
+      <a href="https://ko-fi.com/itsclxw" class="social-btn kofi" target="_blank">
+        <i class="fas fa-coffee"></i> Support on Ko-fi
+      </a>
     </div>
 
-    <!-- SPOTIFY TOP TRACKS -->
+    <!-- SPOTIFY MUSIC SECTION (Latest Release + Top Tracks) -->
     <div class="spotify-section">
-      <h2 class="spotify-title">Top Tracks</h2>
+      <h2 class="spotify-title">Latest Release & Top Tracks</h2>
+      <p class="spotify-subtitle">Stream Honour 2.0 everywhere • by TypiiKal</p>
       <div class="spotify-grid">
-        <!-- Honour 2.0 -->
+        <!-- Honour 2.0 (Album) -->
         <div class="spotify-embed">
-          <iframe src="https://open.spotify.com/embed/album/4ISBnywk8CdMmcdz8AfJsn" 
-                  width="100%" height="85" 
-                  frameborder="0" 
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          <iframe src="https://open.spotify.com/embed/album/4ISBnywk8CdMmcdz8AfJsn"
+                  width="100%" height="85"
+                  frameborder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy">
           </iframe>
         </div>
         <!-- Honour 2.0 (Remix) -->
         <div class="spotify-embed">
-          <iframe src="https://open.spotify.com/embed/track/5omDZBbrbOzdXbUaRmYz9L" 
-                  width="100%" height="85" 
-                  frameborder="0" 
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          <iframe src="https://open.spotify.com/embed/track/5omDZBbrbOzdXbUaRmYz9L"
+                  width="100%" height="85"
+                  frameborder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy">
           </iframe>
         </div>
@@ -411,37 +402,33 @@
         </a>
       </div>
     </div>
-
     <!-- FOOTER -->
     <footer>
       <p>© 2025 <strong>itsclxw_</strong> • All platforms linked</p>
     </footer>
   </div>
-
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
     // === COLOR SYSTEM (NO RANDOM) ===
     const colorPresets = [
-      { name: "Red",    primary: "#ff0000", secondary: "#ff0000", particle1: "#ff0000", particle2: "#ff0000", line: "#ff0000" },
-      { name: "Blue",   primary: "#0099ff", secondary: "#0099ff", particle1: "#0099ff", particle2: "#0099ff", line: "#0099ff" },
-      { name: "Teal",  primary: "#00E4C5", secondary: "#00E4C5", particle1: "#00E4C5", particle2: "#00E4C5", line: "#00E4C5" },
-      { name: "White",  primary: "#FFFFFF", secondary: "#FFFFFF", particle1: "#FFFFFF", particle2: "#FFFFFF", line: "#FFFFFF" },
-      { name: "Black",  primary: "#060606", secondary: "#060606", particle1: "#060606", particle2: "#060606", line: "#060606" },
+      { name: "Red", primary: "#ff0000", secondary: "#ff0000", particle1: "#ff0000", particle2: "#ff0000", line: "#ff0000" },
+      { name: "Blue", primary: "#0099ff", secondary: "#0099ff", particle1: "#0099ff", particle2: "#0099ff", line: "#0099ff" },
+      { name: "Teal", primary: "#00E4C5", secondary: "#00E4C5", particle1: "#00E4C5", particle2: "#00E4C5", line: "#00E4C5" },
+      { name: "White", primary: "#FFFFFF", secondary: "#FFFFFF", particle1: "#FFFFFF", particle2: "#FFFFFF", line: "#FFFFFF" },
+      { name: "Black", primary: "#060606", secondary: "#060606", particle1: "#060606", particle2: "#060606", line: "#060606" },
       { name: "Purple", primary: "#8B00F3", secondary: "#8B00F3", particle1: "#8B00F3", particle2: "#8B00F3", line: "#8B00F3" }
     ];
     let currentColorIndex = 0;
     let pJ;
-
     function updateCSSVariables(preset) {
       document.documentElement.style.setProperty('--primary', preset.primary);
       document.documentElement.style.setProperty('--secondary', preset.secondary);
-      document.documentElement.style.setProperty('--border', preset.primary.replace('d3', '33')); // 20% opacity
+      document.documentElement.style.setProperty('--border', preset.primary + '33');
       document.documentElement.style.setProperty('--particle-color-1', preset.particle1);
       document.documentElement.style.setProperty('--particle-color-2', preset.particle2);
       document.documentElement.style.setProperty('--particle-line', preset.line);
     }
-
     function initParticles() {
       const preset = colorPresets[currentColorIndex];
       const config = {
@@ -468,11 +455,9 @@
         },
         "retina_detect": true
       };
-
       if (pJ) pJ.fn.vendors.destroy();
       pJ = particlesJS("particles-js", config);
     }
-
     function cycleParticleColor() {
       currentColorIndex = (currentColorIndex + 1) % colorPresets.length;
       const preset = colorPresets[currentColorIndex];
@@ -482,7 +467,6 @@
       localStorage.setItem("particleColor", currentColorIndex);
       initParticles();
     }
-
     // === INIT ON LOAD ===
     const savedColor = localStorage.getItem("particleColor");
     if (savedColor && parseInt(savedColor) < colorPresets.length) {
@@ -493,11 +477,9 @@
     document.getElementById("colorLabel").textContent = initialPreset.name;
     document.getElementById("colorDot").style.background = initialPreset.particle1;
     initParticles();
-
     // === DARK MODE TOGGLE ===
     const toggleBtn = document.querySelector('.theme-toggle span');
     const icon = document.querySelector('.theme-toggle i');
-
     function toggleTheme() {
       const isLight = document.documentElement.getAttribute('data-theme') === 'light';
       document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
@@ -505,7 +487,6 @@
       icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
       localStorage.setItem('theme', isLight ? 'dark' : 'light');
     }
-
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
     toggleBtn.textContent = savedTheme === 'light' ? 'Light Mode' : 'Dark Mode';
